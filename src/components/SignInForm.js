@@ -13,18 +13,20 @@ import {
 } from '@mui/material';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
-import { InterFont, InterTypography } from '@/ui/font';
+import { InterFont, InterTypography, LabelTypography } from '@/ui/font';
 import { SignInButton } from '@/ui/button';
 import { useTheme } from 'next-themes';
 import axios from 'axios';
 
-const RegistrationForm = () => {
+const LoginForm = () => {
   const { theme } = useTheme();
 
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword(!showPassword);
   const handleMouseDownPassword = () => setShowPassword(!showPassword);
+  const [success, setSuccess] = useState('');
+  const [error, setError] = useState('');
 
   const formik = useFormik({
     initialValues: {
@@ -45,6 +47,8 @@ const RegistrationForm = () => {
     }),
 
     onSubmit: async (values, helpers) => {
+      setSuccess('');
+      setError('');
       try {
         const response = await axios({
           url: `https://rakbanktest.free.beeceptor.com`,
@@ -56,6 +60,7 @@ const RegistrationForm = () => {
         });
 
         if (response.status === 200) {
+          setSuccess('Success Logging In');
           console.log('success');
           helpers.resetForm();
         } else {
@@ -96,13 +101,10 @@ const RegistrationForm = () => {
         >
           Sign in to Travelguru{' '}
         </InterTypography>
-        <Typography
-          variant="h6"
-          sx={{ lineHeight: '50px', color: 'grey', marginLeft: '20px' }}
-        >
+        <LabelTypography variant="h6">
           Dont have an account?{' '}
           <span style={{ color: '#F76857' }}>Sign Up</span>
-        </Typography>
+        </LabelTypography>
       </Box>
       <Divider
         sx={{
@@ -122,6 +124,7 @@ const RegistrationForm = () => {
             onChange={formik.handleChange}
             value={formik.values.fullName}
             sx={{ ...inputStyle }}
+            data-testid="fullName"
           />
           <TextField
             error={Boolean(formik.touched.email && formik.errors.email)}
@@ -135,6 +138,7 @@ const RegistrationForm = () => {
             type="email"
             value={formik.values.email}
             sx={{ ...inputStyle }}
+            data-testid="email"
           />
           <TextField
             error={Boolean(formik.touched.password && formik.errors.password)}
@@ -165,6 +169,7 @@ const RegistrationForm = () => {
               ),
             }}
             sx={{ ...inputStyle }}
+            data-testid="password"
           />
           <SignInButton
             disabled={formik.isSubmitting}
@@ -173,9 +178,22 @@ const RegistrationForm = () => {
             type="submit"
             variant="contained"
             id="btnSubmit"
+            data-testid="btnSubmit"
           >
             Continue
           </SignInButton>
+          <Typography
+            data-testid="success"
+            sx={{ textAlign: 'center', m: '5px' }}
+          >
+            {success}
+          </Typography>
+          <Typography
+            data-testid="error"
+            sx={{ textAlign: 'center', m: '5px' }}
+          >
+            {error}
+          </Typography>
         </form>
       </Box>
       <Divider
@@ -187,4 +205,4 @@ const RegistrationForm = () => {
   );
 };
 
-export default RegistrationForm;
+export default LoginForm;

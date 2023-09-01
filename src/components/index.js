@@ -1,10 +1,10 @@
 import * as React from 'react';
 import CardContent from '@mui/material/CardContent';
 import { Grid } from '@mui/material';
-import LeftImageSection from './left_side_image';
-import CustomizedSwitches from './theme_switch';
-import RegistrationForm from './registration_form';
-import SocialMediaIcons from './social_media_icons';
+import LeftImageSection from './LeftImageSection';
+import CustomizedSwitches from './ThemeSwitch';
+import RegistrationForm from './SignInForm';
+import SocialMediaIcons from './SocialMediaIcons';
 import { useTheme } from 'next-themes';
 import { StyledInterTypography } from '@/ui/font';
 import { StyledContainer } from '@/ui/grid';

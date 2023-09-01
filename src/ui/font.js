@@ -21,3 +21,9 @@ export const StyledInterTypography = styled(InterTypography)`
   display: flex;
   align-items: center;
 `;
+
+export const LabelTypography = styled(Typography)({
+  lineHeight: '50px',
+  color: 'grey',
+  marginLeft: '20px',
+});
