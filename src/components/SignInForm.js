@@ -10,6 +10,7 @@ import {
   Divider,
   Typography,
   Box,
+  Button,
 } from '@mui/material';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
@@ -17,10 +18,10 @@ import { InterFont, InterTypography, LabelTypography } from '@/ui/font';
 import { SignInButton } from '@/ui/button';
 import { useTheme } from 'next-themes';
 import axios from 'axios';
-
-const LoginForm = () => {
+import { CustomTextField } from '@/ui/TextField';
+const SignInForm = () => {
   const { theme } = useTheme();
-
+  const isDarkMode = theme === 'dark';
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword(!showPassword);
@@ -61,7 +62,6 @@ const LoginForm = () => {
 
         if (response.status === 200) {
           setSuccess('Success Logging In');
-          console.log('success');
           helpers.resetForm();
         } else {
           helpers.setFieldError('submit', 'Submission failed');
@@ -103,7 +103,9 @@ const LoginForm = () => {
         </InterTypography>
         <LabelTypography variant="h6">
           Dont have an account?{' '}
-          <span style={{ color: '#F76857' }}>Sign Up</span>
+          <Button variant="text" sx={{ color: '#F76857' }}>
+            Sign Up
+          </Button>
         </LabelTypography>
       </Box>
       <Divider
@@ -113,7 +115,7 @@ const LoginForm = () => {
       />
       <Box sx={{ px: '30px' }}>
         <form onSubmit={formik.handleSubmit}>
-          <TextField
+          <CustomTextField
             error={Boolean(formik.touched.fullName && formik.errors.fullName)}
             fullWidth
             helperText={formik.touched.fullName && formik.errors.fullName}
@@ -125,8 +127,9 @@ const LoginForm = () => {
             value={formik.values.fullName}
             sx={{ ...inputStyle }}
             data-testid="fullName"
+            className={isDarkMode ? 'dark-mode' : ''}
           />
-          <TextField
+          <CustomTextField
             error={Boolean(formik.touched.email && formik.errors.email)}
             fullWidth
             helperText={formik.touched.email && formik.errors.email}
@@ -139,8 +142,9 @@ const LoginForm = () => {
             value={formik.values.email}
             sx={{ ...inputStyle }}
             data-testid="email"
+            className={isDarkMode ? 'dark-mode' : ''}
           />
-          <TextField
+          <CustomTextField
             error={Boolean(formik.touched.password && formik.errors.password)}
             fullWidth
             helperText={formik.touched.password && formik.errors.password}
@@ -170,6 +174,7 @@ const LoginForm = () => {
             }}
             sx={{ ...inputStyle }}
             data-testid="password"
+            className={isDarkMode ? 'dark-mode' : ''}
           />
           <SignInButton
             disabled={formik.isSubmitting}
@@ -205,4 +210,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default SignInForm;

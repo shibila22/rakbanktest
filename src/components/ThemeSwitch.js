@@ -8,9 +8,10 @@ import { themeReducer } from '@/slice/theme-slice';
 import { MaterialUISwitch } from '@/ui/switch';
 
 const CustomizedSwitches = () => {
-  const { setTheme, themes } = useTheme();
+  const { setTheme } = useTheme();
 
   const selectedColor = useSelector((state) => state.theme.value.themeColor);
+
   const [value, setValue] = useState(selectedColor === 'dark' ? true : false);
   const dispatch = useDispatch();
 

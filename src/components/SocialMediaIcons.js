@@ -9,7 +9,9 @@ const SocialMediaIcons = () => {
     <>
       <Grid container justifyContent={'center'} sx={{ p: '15px' }}>
         <Grid item>
-          <Typography sx={{ textAlign: 'center' }}>OR</Typography>
+          <Typography variant="h6" sx={{ textAlign: 'center', color: 'grey' }}>
+            OR
+          </Typography>
         </Grid>
       </Grid>
       <Grid container spacing={2} justifyContent={'center'} sx={{ p: '30px' }}>
