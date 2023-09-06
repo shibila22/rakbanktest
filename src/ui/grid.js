@@ -6,3 +6,7 @@ export const StyledContainer = styled(Grid)`
   align-items: center;
   padding: 15px;
 `;
+
+export const RightGrid = styled(Grid)(({ theme }) => ({
+  background: theme.gridGradient,
+}));

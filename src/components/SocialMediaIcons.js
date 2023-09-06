@@ -1,34 +1,31 @@
-import { Typography, Box, Grid } from '@mui/material';
-import GoogleIcon from '@mui/icons-material/Google';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import AppleIcon from '@mui/icons-material/Apple';
+import { Grid } from '@mui/material';
 import { SocialMediaIconBox } from '@/ui/box';
+import { CommonTypography, IconTypography, PoppinsTypography } from '@/ui/font';
+import Image from 'next/image';
 
 const SocialMediaIcons = () => {
   return (
     <>
       <Grid container justifyContent={'center'} sx={{ p: '15px' }}>
         <Grid item>
-          <Typography variant="h6" sx={{ textAlign: 'center', color: 'grey' }}>
-            OR
-          </Typography>
+          <CommonTypography>-OR-</CommonTypography>
         </Grid>
       </Grid>
-      <Grid container spacing={2} justifyContent={'center'} sx={{ p: '30px' }}>
+      <Grid container spacing={2} justifyContent={'center'} sx={{ p: '20px' }}>
         <Grid item xs={12} sm={8} md={8}>
           <SocialMediaIconBox>
-            <GoogleIcon sx={{ mr: '15px' }} />
-            <Typography>Sign in with google</Typography>
+            <Image src="/icons/google.png" width={20} height={20} />
+            <IconTypography>Sign in with google</IconTypography>
           </SocialMediaIconBox>
         </Grid>
         <Grid item xs={6} sm={2} md={2}>
           <SocialMediaIconBox>
-            <FacebookIcon />
+            <Image src="/icons/facebook.png" width={20} height={23} />{' '}
           </SocialMediaIconBox>
         </Grid>
         <Grid item xs={6} sm={2} md={2}>
           <SocialMediaIconBox>
-            <AppleIcon />
+            <Image src="/icons/apple-logo.png" width={20} height={23} />{' '}
           </SocialMediaIconBox>
         </Grid>
       </Grid>

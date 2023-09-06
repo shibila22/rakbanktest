@@ -3,25 +3,16 @@ import { useState } from 'react';
 // Formik + Yup
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import {
-  TextField,
-  IconButton,
-  InputAdornment,
-  Divider,
-  Typography,
-  Box,
-  Button,
-} from '@mui/material';
+import { IconButton, InputAdornment, Box, TextField } from '@mui/material';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
-import { InterFont, InterTypography, LabelTypography } from '@/ui/font';
-import { SignInButton } from '@/ui/button';
-import { useTheme } from 'next-themes';
-import axios from 'axios';
-import { CustomTextField } from '@/ui/TextField';
+import { LabelTypography, PoppinsTypography } from '@/ui/font';
+import { SignInButton, SignUpButton } from '@/ui/button';
+import { CustomDivider } from '@/ui/divider';
+import { CommonTypography } from '@/ui/font';
+import { loginApi } from '@/pages/api/signIn';
+
 const SignInForm = () => {
-  const { theme } = useTheme();
-  const isDarkMode = theme === 'dark';
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword(!showPassword);
@@ -51,15 +42,7 @@ const SignInForm = () => {
       setSuccess('');
       setError('');
       try {
-        const response = await axios({
-          url: `https://rakbanktest.free.beeceptor.com`,
-          method: 'POST',
-          data: JSON.stringify(values), // Send the form values in the request
-          validateStatus: function (status) {
-            return status >= 200 && status < 599;
-          },
-        });
-
+        const response = await loginApi.SignIn(values);
         if (response.status === 200) {
           setSuccess('Success Logging In');
           helpers.resetForm();
@@ -74,88 +57,76 @@ const SignInForm = () => {
     },
   });
 
-  const inputStyle = {
-    backgroundColor: theme === 'dark' ? '#848884' : '#fff',
-    color: theme === 'dark' ? '#fff' : '#333',
-  };
-
-  const dividerStyles = {
-    borderWidth: '1px',
-    backgroundColor: theme === 'dark' ? '#848884' : '#D3D3D3',
-    my: '20px',
-    borderColor: 'transparent',
-    mx: '30px',
-  };
-
   return (
     <>
-      <Divider
-        sx={{
-          ...dividerStyles,
-        }}
-      />
+      <CustomDivider />
       <Box sx={{ p: '15px' }}>
-        <InterTypography
-          variant="h4"
-          sx={{ color: theme === 'dark' ? 'white' : 'grey' }}
-        >
+        <PoppinsTypography variant="h3">
           Sign in to Travelguru{' '}
-        </InterTypography>
+        </PoppinsTypography>
         <LabelTypography variant="h6">
           Dont have an account?{' '}
-          <Button variant="text" sx={{ color: '#F76857' }}>
-            Sign Up
-          </Button>
+          <SignUpButton variant="text">Sign up</SignUpButton>
         </LabelTypography>
       </Box>
-      <Divider
-        sx={{
-          ...dividerStyles,
-        }}
-      />
+      <CustomDivider />
       <Box sx={{ px: '30px' }}>
         <form onSubmit={formik.handleSubmit}>
-          <CustomTextField
+          <TextField
             error={Boolean(formik.touched.fullName && formik.errors.fullName)}
             fullWidth
             helperText={formik.touched.fullName && formik.errors.fullName}
-            label="Full Name"
+            // label="Full Name"
             name="fullName"
             id="fullName"
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
             value={formik.values.fullName}
-            sx={{ ...inputStyle }}
             data-testid="fullName"
-            className={isDarkMode ? 'dark-mode' : ''}
+            placeholder="Full Name"
+            variant="filled"
+            InputProps={{
+              style: {
+                borderRadius: '10px',
+              },
+            }}
           />
-          <CustomTextField
+          <TextField
             error={Boolean(formik.touched.email && formik.errors.email)}
             fullWidth
             helperText={formik.touched.email && formik.errors.email}
-            label="Email Address"
+            // label="Email Address"
             margin="normal"
             name="email"
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
             type="email"
             value={formik.values.email}
-            sx={{ ...inputStyle }}
             data-testid="email"
-            className={isDarkMode ? 'dark-mode' : ''}
+            placeholder="Email"
+            variant="filled"
+            InputProps={{
+              style: {
+                borderRadius: '10px',
+              },
+            }}
           />
-          <CustomTextField
+          <TextField
             error={Boolean(formik.touched.password && formik.errors.password)}
             fullWidth
             helperText={formik.touched.password && formik.errors.password}
-            label="Password"
+            // label="Password"
             margin="normal"
             name="password"
+            placeholder="Password"
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
             type={showPassword ? 'text' : 'password'}
             value={formik.values.password}
             InputProps={{
+              style: {
+                borderRadius: '10px',
+              },
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton
@@ -172,9 +143,8 @@ const SignInForm = () => {
                 </InputAdornment>
               ),
             }}
-            sx={{ ...inputStyle }}
             data-testid="password"
-            className={isDarkMode ? 'dark-mode' : ''}
+            variant="filled"
           />
           <SignInButton
             disabled={formik.isSubmitting}
@@ -187,25 +157,11 @@ const SignInForm = () => {
           >
             Continue
           </SignInButton>
-          <Typography
-            data-testid="success"
-            sx={{ textAlign: 'center', m: '5px' }}
-          >
-            {success}
-          </Typography>
-          <Typography
-            data-testid="error"
-            sx={{ textAlign: 'center', m: '5px' }}
-          >
-            {error}
-          </Typography>
+          <CommonTypography data-testid="success">{success}</CommonTypography>
+          <CommonTypography data-testid="error">{error}</CommonTypography>
         </form>
       </Box>
-      <Divider
-        sx={{
-          ...dividerStyles,
-        }}
-      />{' '}
+      <CustomDivider />
     </>
   );
 };

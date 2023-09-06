@@ -2,35 +2,23 @@ import * as React from 'react';
 import { useState } from 'react';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import { useTheme } from 'next-themes';
 import { useDispatch, useSelector } from 'react-redux';
 import { themeReducer } from '@/slice/theme-slice';
 import { MaterialUISwitch } from '@/ui/switch';
 
 const CustomizedSwitches = () => {
-  const { setTheme } = useTheme();
-
-  const selectedColor = useSelector((state) => state.theme.value.themeColor);
-
-  const [value, setValue] = useState(selectedColor === 'dark' ? true : false);
   const dispatch = useDispatch();
 
-  const toggleTheme = (e) => {
-    setValue(e.target.checked);
-    if (e.target.checked) {
-      setTheme('dark');
-      dispatch(
-        themeReducer({
-          themeColor: 'dark',
-        })
-      );
+  const selectedColor = useSelector((state) => state.theme.themeColor);
+  const [isDarkMode, setIsDarkMode] = useState(selectedColor === 'dark');
+  const toggleTheme = () => {
+    // Toggle theme correctly based on isDarkMode state
+    if (isDarkMode) {
+      setIsDarkMode(false);
+      dispatch(themeReducer('light'));
     } else {
-      setTheme('light');
-      dispatch(
-        themeReducer({
-          themeColor: 'light',
-        })
-      );
+      setIsDarkMode(true);
+      dispatch(themeReducer('dark'));
     }
   };
   return (
@@ -39,7 +27,7 @@ const CustomizedSwitches = () => {
         control={
           <MaterialUISwitch
             sx={{ m: 1 }}
-            checked={value}
+            checked={isDarkMode}
             onChange={toggleTheme}
             id="switch"
           />

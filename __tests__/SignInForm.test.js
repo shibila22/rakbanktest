@@ -45,5 +45,49 @@ describe('SignIn Form Section ', () => {
         expect(screen.getByTestId('error')).toBeInTheDocument();
       });
     });
+    it('should render the  input field correctly', () => {
+      render(<SignInForm />);
+      const fullNameInput = screen.getByLabelText(/Full Name/i);
+      expect(fullNameInput).toBeInTheDocument();
+      expect(fullNameInput).toHaveAttribute('type', 'text');
+      const emailInput = screen.getByLabelText(/Email/i);
+
+      expect(emailInput).toBeInTheDocument();
+      expect(emailInput).toHaveAttribute('type', 'email');
+      const passwordInput = screen.getByLabelText(/Password/);
+      expect(passwordInput).toBeInTheDocument();
+      expect(passwordInput).toHaveAttribute('type', 'password');
+    });
+
+    it('should display an error for an invalid email format', async () => {
+      render(<SignInForm />);
+
+      const emailInput = screen.getByLabelText(/Email/i);
+      const submitButton = screen.getByTestId('btnSubmit');
+
+      // Enter an invalid email address (missing "@" symbol).
+      await userEvent.type(emailInput, 'invalid-email');
+      await userEvent.click(submitButton);
+
+      // Assert that an error message related to the email field is displayed.
+      const emailError = screen.getByText(/Must be a valid email/i);
+      expect(emailError).toBeInTheDocument();
+    });
+    it('should display an error for a weak password', async () => {
+      render(<SignInForm />);
+
+      const passwordInput = screen.getByLabelText(/Password/);
+      const submitButton = screen.getByTestId('btnSubmit');
+
+      // Enter a weak password (e.g., less than 6 characters).
+      await userEvent.type(passwordInput, 'weak');
+      await userEvent.click(submitButton);
+
+      // Assert that an error message related to the password field is displayed.
+      const passwordError = screen.getByText(
+        /password must be at least 8 characters/i
+      );
+      expect(passwordError).toBeInTheDocument();
+    });
   });
 });

@@ -5,31 +5,20 @@ import LeftImageSection from './LeftImageSection';
 import CustomizedSwitches from './ThemeSwitch';
 import RegistrationForm from './SignInForm';
 import SocialMediaIcons from './SocialMediaIcons';
-import { useTheme } from 'next-themes';
 import { StyledInterTypography } from '@/ui/font';
-import { StyledContainer } from '@/ui/grid';
+import { RightGrid, StyledContainer } from '@/ui/grid';
 import { CustomCard } from '@/ui/card';
 import { StyledCheckCircleIcon } from '@/ui/icon';
 
 const BasicCard = () => {
-  const { theme } = useTheme();
   return (
-    <CustomCard
-      sx={{
-        backgroundColor: theme === 'dark' ? '#333' : '#fff',
-      }}
-    >
-      <CardContent
-        sx={{
-          p: '0',
-          '&:last-child': { paddingBottom: 0 },
-        }}
-      >
+    <CustomCard>
+      <CardContent>
         <Grid container justifyContent={'space-between'} spacing={4}>
-          <Grid item md={6} xs={12} sm={12}>
+          <Grid item md={6} xs={12} sm={12} className="imageGrid">
             <LeftImageSection />
           </Grid>
-          <Grid item md={6} xs={12} sm={12}>
+          <RightGrid item md={6} xs={12} sm={12} className="rightGrid">
             <StyledContainer>
               <Grid item>
                 {' '}
@@ -49,7 +38,7 @@ const BasicCard = () => {
             </Grid>
 
             <SocialMediaIcons />
-          </Grid>
+          </RightGrid>
         </Grid>
       </CardContent>
     </CustomCard>

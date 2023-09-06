@@ -1,11 +1,14 @@
 :root {
-  /* Your default theme */
-  --background: white;
-  --foreground: black;
   padding: 30px;
 }
 
-[data-theme='dark'] {
-  --background: black;
-  --foreground: white;
+.imageGrid img {
+  &.dark {
+    -webkit-filter: grayscale(1) !important;
+    filter: grayscale(1) !important;
+  }
+}
+
+body {
+  background-color: red;
 }

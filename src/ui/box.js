@@ -4,6 +4,7 @@ export const SocialMediaIconBox = styled(Box)({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  backgroundColor: '#FFF1F0',
+  backgroundColor: '#F3CFC6',
   padding: '20px',
+  borderRadius: '10px',
 });

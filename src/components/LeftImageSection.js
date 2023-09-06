@@ -1,13 +1,12 @@
 import Image from 'next/image';
-import { useTheme } from 'next-themes';
+import { useSelector } from 'react-redux';
 
 const LeftImageSection = () => {
-  const theme = useTheme();
+  const selectedColor = useSelector((state) => state.theme.themeColor);
+
   const imageStyle = {
     width: '100%', 
     height: '100%',
-    border: `2px solid ${theme}`,
-    boxShadow: theme === 'dark' ? '0 0 5px rgba(222, 285, 255, 0.8)' : 'none',
   };
 
   return (
@@ -17,6 +16,7 @@ const LeftImageSection = () => {
       height={900}
       alt="Picture of login screen"
       style={...imageStyle}
+      className={selectedColor==='dark'?'dark':''}
     />
   );
 };
