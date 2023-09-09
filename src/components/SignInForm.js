@@ -78,6 +78,7 @@ const SignInForm = () => {
             helperText={formik.touched.fullName && formik.errors.fullName}
             // label="Full Name"
             name="fullName"
+            type="text"
             id="fullName"
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
@@ -96,6 +97,7 @@ const SignInForm = () => {
             fullWidth
             helperText={formik.touched.email && formik.errors.email}
             // label="Email Address"
+            id="email"
             margin="normal"
             name="email"
             onBlur={formik.handleBlur}
@@ -118,6 +120,7 @@ const SignInForm = () => {
             // label="Password"
             margin="normal"
             name="password"
+            id="password"
             placeholder="Password"
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
@@ -135,9 +138,9 @@ const SignInForm = () => {
                     onMouseDown={handleMouseDownPassword}
                   >
                     {showPassword ? (
-                      <VisibilityOutlinedIcon />
+                      <VisibilityOutlinedIcon data-testid="visibilityIcon" />
                     ) : (
-                      <VisibilityOffOutlinedIcon />
+                      <VisibilityOffOutlinedIcon data-testid="visibilityIcon" />
                     )}
                   </IconButton>
                 </InputAdornment>

@@ -1,7 +1,6 @@
 // Colors
-
 const background = {
-  default: '#green',
+  default: '#151E3D',
   paper: 'black',
 };
 
@@ -14,6 +13,8 @@ const primary = {
 
 const secondary = {
   main: '#F76857',
+  light: '#000000',
+  dark: '#808080',
 };
 
 const info = {
@@ -24,10 +25,6 @@ const text = {
   primary: '#ffff',
   secondary: '#000000',
   disabled: 'rgba(255, 255, 255, 0.48)',
-};
-const switchColor = {
-  primary: '#000000',
-  secondary: '#808080',
 };
 
 export const darkThemeOptions = {
@@ -62,11 +59,10 @@ export const darkThemeOptions = {
     primary,
     secondary,
     text,
-    switchColor,
   },
   action: {
-    hover: 'linear-gradient(129.09deg, #F76547 1.41%, #FE4F4C 98.43%)',
-    active: 'linear-gradient(129.09deg, #F76857 1.41%, #FE4F4C 98.43%)',
+    hover: '#f76859',
+    active: '#f76860',
   },
   typography: {
     fontFamily: 'Poppins',
@@ -76,6 +72,7 @@ export const darkThemeOptions = {
     'none', // 0
     '0px 0px 2px rgba(0, 0, 0, 0.25)', // 1 (your custom box shadow)
   ],
+  customGradient: 'linear-gradient(129.09deg, #F76857 1.41%, #FE4F4C 98.43%)',
   gridGradient:
     'linear-gradient(29deg, rgba(16,7,64,1) 0%, rgba(53,49,49,1) 17%, rgba(8,45,84,1) 83%, rgba(5,9,34,1) 96%);',
 };

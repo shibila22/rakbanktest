@@ -1,6 +1,6 @@
 // Colors
 const background = {
-  default: 'black',
+  default: '#E1EBEE',
 };
 
 const divider = '#E6E8F0';
@@ -12,6 +12,8 @@ const primary = {
 
 const secondary = {
   main: '#F76857',
+  light: '#ffffff',
+  dark: '#000000',
 };
 
 const info = {
@@ -21,11 +23,6 @@ const info = {
 
 const text = {
   primary: '#121828',
-  secondary: '#000000',
-};
-
-const switchColor = {
-  primary: '#ffffff',
   secondary: '#000000',
 };
 
@@ -62,19 +59,20 @@ export const lightThemeOptions = {
     primary,
     secondary,
     text,
-    switchColor,
   },
   typography: {
     fontFamily: 'Poppins',
   },
   action: {
-    hover: 'linear-gradient(129.09deg, #F76547 1.41%, #FE4F4C 98.43%)',
-    active: 'linear-gradient(129.09deg, #F76857 1.41%, #FE4F4C 98.43%)',
+    hover: '#f76859',
+    active: '#f76860',
   },
   shadows: [
     'none', // 0
     '0px 0px 2px rgba(0, 0, 0, 0.25)', // 1 (your custom box shadow)
   ],
+  customGradient: 'linear-gradient(129.09deg, #F76857 1.41%, #FE4F4C 98.43%)',
+
   gridGradient:
-    'linear-gradient(52deg, rgba(255,255,255,1) 1%, rgba(239,237,247,1) 2%, rgba(254,254,254,1) 14%, rgba(249,249,249,1) 92%, rgba(255,231,243,1) 99%, rgba(255,254,254,1) 100%, rgba(255,227,241,1) 100%)',
+    'linear-gradient(50deg,  rgba(239,237,247,1) 3%, rgba(254,254,254,1) 14%, rgba(249,249,249,1) 75%, rgba(255,231,243,1) 100%, rgba(255,254,254,1) 100%, rgba(255,227,241,1) 100%)',
 };

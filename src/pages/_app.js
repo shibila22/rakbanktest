@@ -7,7 +7,6 @@ import '@/styles/globals.css';
 
 // redux-persist
 import { PersistGate } from 'redux-persist/integration/react';
-
 import { persistStore } from 'redux-persist';
 
 let persistor = persistStore(store);
@@ -16,11 +15,11 @@ export default function App({ Component, pageProps }) {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
-        <CssBaseline>
-          <MUIThemeProvider>
+        <MUIThemeProvider>
+          <CssBaseline>
             <Component {...pageProps} />
-          </MUIThemeProvider>
-        </CssBaseline>
+          </CssBaseline>
+        </MUIThemeProvider>
       </PersistGate>
     </Provider>
   );

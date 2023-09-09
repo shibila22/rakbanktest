@@ -1,14 +1,15 @@
 import { Switch, styled } from '@mui/material';
 export const MaterialUISwitch = styled(Switch)(({ theme }) => ({
-  width: 58,
-  height: 33,
+  width: 60,
+  height: 32,
   padding: 2,
   '& .MuiSwitch-switchBase': {
-    marginTop: 1,
-    padding: 3,
+    padding: 4,
+    marginTop: 2,
+    marginLeft: 4,
+
     '&.Mui-checked': {
-      // color: '#fff',
-      transform: 'translateX(31px)',
+      transform: 'translateX(26px)',
       '& .MuiSwitch-thumb:before': {
         backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="22" width="22" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
           '#fff'
@@ -16,23 +17,23 @@ export const MaterialUISwitch = styled(Switch)(({ theme }) => ({
       },
       '& + .MuiSwitch-track': {
         opacity: 1,
-        backgroundColor: theme.palette.switchColor.primary,
+        backgroundColor: theme.palette.secondary.light,
       },
     },
   },
   '& .MuiSwitch-thumb': {
-    backgroundColor: theme.palette.switchColor.secondary,
+    backgroundColor: theme.palette.secondary.dark,
 
-    width: 20,
-    height: 25,
-    padding: 8,
+    width: 19,
+    height: 20,
+    padding: 2,
     '&:before': {
       content: "''",
       position: 'absolute',
-      width: '95%',
-      height: '90%',
-      left: 0,
-      top: 0,
+      width: '80%',
+      height: '83%',
+      left: 2,
+      top: 2,
       backgroundPosition: 'center',
       backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
         '#fff'
@@ -41,9 +42,9 @@ export const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   },
   '& .MuiSwitch-track': {
     opacity: 1,
-    backgroundColor: theme.palette.switchColor.primary,
+    backgroundColor: theme.palette.secondary.light,
 
-    borderRadius: 30 / 2,
+    borderRadius: 30,
     border: '2px solid grey',
   },
 }));

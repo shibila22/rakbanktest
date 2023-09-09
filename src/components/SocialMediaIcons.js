@@ -14,18 +14,36 @@ const SocialMediaIcons = () => {
       <Grid container spacing={2} justifyContent={'center'} sx={{ p: '20px' }}>
         <Grid item xs={12} sm={8} md={8}>
           <SocialMediaIconBox>
-            <Image src="/icons/google.png" width={20} height={20} />
+            <Image
+              src="/icons/google.png"
+              alt="google"
+              width={20}
+              height={20}
+              data-testid="google-img"
+            />
             <IconTypography>Sign in with google</IconTypography>
           </SocialMediaIconBox>
         </Grid>
         <Grid item xs={6} sm={2} md={2}>
           <SocialMediaIconBox>
-            <Image src="/icons/facebook.png" width={20} height={23} />{' '}
+            <Image
+              src="/icons/facebook.png"
+              alt="facebook"
+              width={20}
+              height={23}
+              data-testid="facebook-img"
+            />{' '}
           </SocialMediaIconBox>
         </Grid>
         <Grid item xs={6} sm={2} md={2}>
           <SocialMediaIconBox>
-            <Image src="/icons/apple-logo.png" width={20} height={23} />{' '}
+            <Image
+              src="/icons/apple-logo.png"
+              alt="apple"
+              width={20}
+              height={23}
+              data-testid="apple-img"
+            />{' '}
           </SocialMediaIconBox>
         </Grid>
       </Grid>
