@@ -10,7 +10,7 @@ import { LabelTypography, PoppinsTypography } from '@/ui/font';
 import { SignInButton, SignUpButton } from '@/ui/button';
 import { CustomDivider } from '@/ui/divider';
 import { CommonTypography } from '@/ui/font';
-import { loginApi } from '@/pages/api/signIn';
+import { loginApi } from '@/pages/__fake__api/index';
 
 const SignInForm = () => {
   const [showPassword, setShowPassword] = useState(false);
